@@ -32,6 +32,7 @@ public class WebSecurityConfig {
         MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
         http.authorizeHttpRequests((requests) -> requests
                 .requestMatchers(mvcMatcherBuilder.pattern("/test1")).permitAll()
+                .requestMatchers(mvcMatcherBuilder.pattern("/test2")).authenticated()
                 .anyRequest().authenticated()
         );
         return http.build();

@@ -7,8 +7,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
 
 @Configuration
@@ -27,27 +28,14 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests()
-                .requestMatchers(AntPathRequestMatcher
-                        .antMatcher("/test1"))
-                .permitAll()
-                .and()
-                .authorizeHttpRequests()
-                .requestMatchers(AntPathRequestMatcher
-                        .antMatcher("/test2"))
-                .authenticated();
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspector) throws Exception {
+        MvcRequestMatcher.Builder mvcMatcherBuilder = new MvcRequestMatcher.Builder(introspector);
+        http.authorizeHttpRequests((requests) -> requests
+                .requestMatchers(mvcMatcherBuilder.pattern("/test1")).permitAll()
+                .anyRequest().authenticated()
+        );
         return http.build();
-
     }
-
-
-//    public SecurityFilterChain filterChain2(HttpSecurity http) throws Exception {
-//        http.authorizeHttpRequests((authz2) -> authz2.requestMatchers("/test1").anonymous()
-//                )
-//                .httpBasic(Customizer.withDefaults());
-//        return http.build();
-//    }
 
 
 }

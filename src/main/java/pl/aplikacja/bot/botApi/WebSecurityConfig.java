@@ -20,14 +20,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebMvc
-
 public class WebSecurityConfig {
-
 
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
-        return new InMemoryClientRegistrationRepository(googleClientRegistration1(),googleClientRegistration());
+        return new InMemoryClientRegistrationRepository(googleClientRegistration());
     }
+
+
     private ClientRegistration googleClientRegistration1() {
         return ClientRegistration.withRegistrationId("github")
                 .clientId("fb3f753a7365e37f0479")
@@ -43,6 +43,7 @@ public class WebSecurityConfig {
                 .clientName("GitHub")
                 .build();
     }
+
     private ClientRegistration googleClientRegistration() {
         return ClientRegistration.withRegistrationId("google")
                 .clientId("544172631662-3sj598scne4q72lr9ou99b2ubf7ire7r.apps.googleusercontent.com")
@@ -73,6 +74,7 @@ public class WebSecurityConfig {
                         .authenticated()
                         .and()
                         .oauth2Login(withDefaults());
+
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

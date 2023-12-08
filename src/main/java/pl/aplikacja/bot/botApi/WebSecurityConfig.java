@@ -72,6 +72,7 @@ public class WebSecurityConfig {
                         .permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/test2"))
                         .authenticated()
+                        .anyRequest().authenticated()
                         .and()
                         .oauth2Login(withDefaults());
 

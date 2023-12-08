@@ -9,4 +9,6 @@ spring:
           google:
             client-id: 544172631662-3sj598scne4q72lr9ou99b2ubf7ire7r.apps.googleusercontent.com
             client-secret: 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
-
+logging:
+  level:
+    org.springframework.security: DEBUG

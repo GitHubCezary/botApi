@@ -3,12 +3,12 @@ spring:
     oauth2:
       client:
         registration:
-          github:
-            clientId: fb3f753a7365e37f0479
-            clientSecret: 45244998436e8c3140f9e27dd4f60402ca40cb79
+#          github:
+#            clientId: fb3f753a7365e37f0479
+#            clientSecret: 45244998436e8c3140f9e27dd4f60402ca40cb79
           google:
             client-id: 544172631662-3sj598scne4q72lr9ou99b2ubf7ire7r.apps.googleusercontent.com
             client-secret: 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
-logging:
-  level:
-    org.springframework.security: DEBUG
+#logging:
+#  level:
+#    org.springframework.security: DEBUG

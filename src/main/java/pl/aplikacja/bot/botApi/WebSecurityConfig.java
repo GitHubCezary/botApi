@@ -15,12 +15,11 @@ import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 
 @Configuration
 @EnableWebMvc
 public class WebSecurityConfig {
+
 
     @Bean
     public ClientRegistrationRepository clientRegistrationRepository() {
@@ -68,13 +67,19 @@ public class WebSecurityConfig {
 
             try {
                 requests
-                        .requestMatchers(mvcMatcherBuilder.pattern("/test1"))
+                        .requestMatchers(mvcMatcherBuilder.pattern("hello"))
                         .permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/test2"))
                         .authenticated()
-                        .anyRequest().authenticated()
+                        .anyRequest()
+                        .authenticated()
                         .and()
-                        .oauth2Login(withDefaults());
+                        .oauth2Login().loginPage("/login")
+                        .defaultSuccessUrl("/hello")
+                        .and()
+                        .logout()
+                        .logoutSuccessUrl("/")
+                        .permitAll();
 
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -83,6 +88,8 @@ public class WebSecurityConfig {
         });
         return http.build();
     }
+
+
 }
 
 

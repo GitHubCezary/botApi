@@ -17,7 +17,7 @@ class UserGui extends VerticalLayout {
         Button button = new Button("click", new Icon(VaadinIcon.ABACUS));
         Label label = new Label();
         button.addClickListener(buttonClickEvent ->
-                label.setText("hello" + textField));
+                label.setText("hello" + textField.getValue()));
         add(textField, button, label);
     }
 

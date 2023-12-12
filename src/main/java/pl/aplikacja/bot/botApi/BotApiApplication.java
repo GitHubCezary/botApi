@@ -3,12 +3,12 @@ package pl.aplikacja.bot.botApi;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication()
 public class BotApiApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(BotApiApplication.class, args);
-
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(BotApiApplication.class, args);
+    }
 
 }
+

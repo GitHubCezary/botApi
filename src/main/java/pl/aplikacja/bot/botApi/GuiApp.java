@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 
-@Route("")
+@Route("testApi")
 @PermitAll
 public class GuiApp extends VerticalLayout {
 
@@ -40,7 +40,7 @@ public class GuiApp extends VerticalLayout {
         });
 
         setAlignItems(Alignment.CENTER);
-        add(header, logoutButton);
+        add( logoutButton);
     }
 }
 

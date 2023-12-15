@@ -5,8 +5,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.VaadinServletRequest;
 import jakarta.annotation.security.PermitAll;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
@@ -23,7 +23,7 @@ public class GuiApp extends VerticalLayout {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
 
-        String givenName = principal.getAttribute("given_name");
+        String givenName = principal.getAttribute("name");
         String familyName = principal.getAttribute("family_name");
         String email = principal.getAttribute("email");
         String picture = principal.getAttribute("picture");
@@ -32,15 +32,17 @@ public class GuiApp extends VerticalLayout {
 
 
         Button logoutButton = new Button("Logout", click -> {
+//
             UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
+            HttpServletRequest request = (HttpServletRequest) UI.getCurrent().getSession().getAttribute(HttpServletRequest.class);
             SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-            logoutHandler.logout(
-                    VaadinServletRequest.getCurrent().getHttpServletRequest(), null,
-                    null);
+            logoutHandler.logout(request, null, null);
+            SecurityContextHolder.getContext().setAuthentication(null);
         });
 
+
         setAlignItems(Alignment.CENTER);
-        add( logoutButton);
+        add(logoutButton, header);
     }
 }
 

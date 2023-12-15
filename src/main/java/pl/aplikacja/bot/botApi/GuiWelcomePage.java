@@ -16,7 +16,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 class GuiWelcomePage extends VerticalLayout {
 
     private static final String OAUTH_URL_GOOGLE = "/oauth2/authorization/google";
-    private static final String OAUTH_URL_GITHUB = "https://github.com/login/oauth/authorize";
+    private static final String OAUTH_URL_GITHUB = "/oauth2/authorization/github";
 
     public GuiWelcomePage() {
         H1 heder = new H1("Witaj w Web Scraping API");
@@ -27,7 +27,7 @@ class GuiWelcomePage extends VerticalLayout {
         setSizeFull();
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
-        Anchor loginLinkGithub = new Anchor(OAUTH_URL_GITHUB,"sdgsdthfsdg");
+        Anchor loginLinkGithub = new Anchor(OAUTH_URL_GITHUB);
         Anchor loginLinkGoogle = new Anchor(OAUTH_URL_GOOGLE);
         // Set router-ignore attribute so that Vaadin router doesn't handle the login request
         loginLinkGoogle.getElement().setAttribute("router-ignore", true);

@@ -7,10 +7,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 @Route("testApi")
@@ -19,22 +21,30 @@ public class GuiApp extends VerticalLayout {
 
     private static final String LOGOUT_SUCCESS_URL = "/login";
 
-    public GuiApp() {
+    @Autowired
+    public GuiApp(QuoteGeneratorTelegramBot telegramBot) {
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
 
         String givenName = principal.getAttribute("name");
         String familyName = principal.getAttribute("family_name");
         String email = principal.getAttribute("email");
-        String picture = principal.getAttribute("picture");
 
         H2 header = new H2("Hello " + givenName + " " + familyName + " (" + email + ")");
 
+        Button buttonSendMessageTelegram = new Button("Wyślij Wiadomość na telegramie", buttonClickEvent -> {
+            try {
+                telegramBot.sendScheduledQuote();
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
 
+        });
         Button logoutButton = new Button("Logout", click -> {
-//
+
             UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
-            HttpServletRequest request = (HttpServletRequest) UI.getCurrent().getSession().getAttribute(HttpServletRequest.class);
+            HttpServletRequest request = UI.getCurrent().getSession().getAttribute(HttpServletRequest.class);
             SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
             logoutHandler.logout(request, null, null);
             SecurityContextHolder.getContext().setAuthentication(null);
@@ -42,7 +52,7 @@ public class GuiApp extends VerticalLayout {
 
 
         setAlignItems(Alignment.CENTER);
-        add(logoutButton, header);
+        add(logoutButton, header, buttonSendMessageTelegram);
     }
 }
 

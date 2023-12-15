@@ -1,7 +1,6 @@
 package pl.aplikacja.bot.botApi;
 
 
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,15 +20,13 @@ public class QuoteGeneratorTelegramBot {
         this.quoteGenerator = quoteGenerator;
     }
 
-    @PostConstruct
-    //    @Scheduled(fixedRate = 60000) // Adjust the interval as needed (e.g., 60000 ms = 1 minute)
-    public void sendScheduledQuote() throws TelegramApiException {
-//        telegramBot.getBotToken();
-//        telegramBot.getChatId();
+    public QuoteGeneratorTelegramBot sendScheduledQuote() throws TelegramApiException {
 
         String randomQuote = quoteGenerator.getRandomQuote();
         long chatId = telegramBot.getChatId();
         telegramBot.execute(new SendMessage(String.valueOf(chatId), randomQuote));
+        return null;
     }
 }
+
 

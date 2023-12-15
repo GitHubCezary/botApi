@@ -23,7 +23,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
     public Long getChatId() {
-//        Long chatId = Long.parseLong("-4094230795");
         return chatId;
     }
 

@@ -11,9 +11,9 @@ spring:
             client-id: 544172631662-3sj598scne4q72lr9ou99b2ubf7ire7r.apps.googleusercontent.com
             client-secret: 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
 
-logging:
-  level:
-    org.springframework.security: DEBUG
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
 telegram:
    bot:
     token: 6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY

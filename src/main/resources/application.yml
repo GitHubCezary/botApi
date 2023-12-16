@@ -20,6 +20,6 @@ telegram:
     chatId: -4094230795
     username: WebScrapingApi_bot
 
-
-
-    #telegram token: 6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY
+your:
+  property:
+    url: https://www.twitch.tv/tazasi

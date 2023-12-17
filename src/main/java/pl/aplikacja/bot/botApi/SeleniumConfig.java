@@ -16,13 +16,16 @@ public class SeleniumConfig {
     @Scheduled(fixedRate = 5000)
     public void printLinks() throws InterruptedException {
         ChromeOptions chromeOptions = new ChromeOptions();
-//        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Cezary\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = new ChromeDriver(chromeOptions);
         driver.get(url);
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//        WebElement divElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("Layout-sc-1xcs6mc-0")));
 
-        WebElement twitchElement = driver.findElement(By.xpath("//div[contains(@aria-label,'')]"));
-        String channelStatusText = twitchElement.getText();
+        WebElement twitchElement = driver.findElement(By.cssSelector("div[aria-label='Kanał jest offline']"));
+        String channelStatusText = twitchElement.getAttribute("aria-label");
+
         if (twitchElement != null) {
             System.out.println("znaleziono : " + channelStatusText);
         } else

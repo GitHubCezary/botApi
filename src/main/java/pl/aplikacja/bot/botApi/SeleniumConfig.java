@@ -1,5 +1,6 @@
 package pl.aplikacja.bot.botApi;
 
+import jakarta.annotation.PostConstruct;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,23 +13,26 @@ import org.springframework.stereotype.Service;
 public class SeleniumConfig {
 
     private String url = "https://www.twitch.tv/tazasi";
+    private WebDriver driver;
 
-    @Scheduled(fixedRate = 5000)
-    public void printLinks() throws InterruptedException {
+    @PostConstruct
+    public void initializeWebDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--headless");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Cezary\\Downloads\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
-        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver = new ChromeDriver(chromeOptions);
         driver.get(url);
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        WebElement divElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("Layout-sc-1xcs6mc-0")));
+    }
 
-        WebElement twitchElement = driver.findElement(By.cssSelector("div[aria-label='Kanał jest offline']"));
-        String channelStatusText = twitchElement.getAttribute("aria-label");
+    @Scheduled(fixedRate = 5000)
+    public void printStatus() {
+        try {
 
-        if (twitchElement != null) {
-            System.out.println("znaleziono : " + channelStatusText);
-        } else
-            System.out.println("nie znalezione");
+            WebElement aElement = driver.findElement(By.cssSelector("a.ScHalo-sc-18imt3g-0"));
+            String statusValue = aElement.getAttribute("status");
+            System.out.println("Wartość atrybutu 'status': " + statusValue);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

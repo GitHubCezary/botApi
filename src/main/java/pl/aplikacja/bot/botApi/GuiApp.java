@@ -5,6 +5,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.VaadinRequest;
+import com.vaadin.flow.server.VaadinServletRequest;
 import jakarta.annotation.security.PermitAll;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +45,17 @@ public class GuiApp extends VerticalLayout {
         });
         Button logoutButton = new Button("Logout", click -> {
 
+
+
             UI.getCurrent().getPage().setLocation(LOGOUT_SUCCESS_URL);
-            HttpServletRequest request = UI.getCurrent().getSession().getAttribute(HttpServletRequest.class);
+            VaadinServletRequest vaadinServletRequest = (VaadinServletRequest) VaadinRequest.getCurrent();
+            HttpServletRequest request = vaadinServletRequest.getHttpServletRequest();
+
             SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
             logoutHandler.logout(request, null, null);
             SecurityContextHolder.getContext().setAuthentication(null);
-        });
 
+        });
 
         setAlignItems(Alignment.CENTER);
         add(logoutButton, header, buttonSendMessageTelegram);

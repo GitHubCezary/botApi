@@ -1,4 +1,3 @@
-
 spring:
   security:
     oauth2:
@@ -19,7 +18,7 @@ telegram:
     token: 6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY
     chatId: -4094230795
     username: WebScrapingApi_bot
+vaadin:
+  servlet:
+    blacklisted-classes: pl.aplikacja.bot.botApi.SeleniumConfig, pl.aplikacja.bot.botApi.TelegramBot
 
-your:
-  property:
-    url: https://www.twitch.tv/tazasi

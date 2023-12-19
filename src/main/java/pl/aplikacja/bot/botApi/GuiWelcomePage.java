@@ -1,7 +1,6 @@
 package pl.aplikacja.bot.botApi;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -21,7 +20,6 @@ public class GuiWelcomePage extends VerticalLayout {
     public GuiWelcomePage() {
         H1 header = new H1("Witaj w Web Scraping API");
         Button googleSignInButton = new Button("Zaloguj przez Google");
-        googleSignInButton.addClassName("google-btn");
         Button gitHubSignInButton = new Button("Zaloguj przez GitHub");
 
         gitHubSignInButton.setAutofocus(true);

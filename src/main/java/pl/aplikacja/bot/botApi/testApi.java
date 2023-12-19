@@ -16,13 +16,5 @@ public class testApi {
     public String get2() {
         return ("/test1");
     }
-
-//    @RequestMapping("/test3")
-//    public String read( @AuthenticationPrincipal OAuth2User principal) {
-//        OAuth2User p2 = (OAuth2User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        return p2.getAttribute("name");
-//    }
-
-
 }
 

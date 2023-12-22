@@ -20,11 +20,15 @@ public class QuoteGeneratorTelegramBot {
         this.quoteGenerator = quoteGenerator;
     }
 
-    public QuoteGeneratorTelegramBot sendScheduledQuote() throws TelegramApiException {
-
-        String randomQuote = quoteGenerator.getRandomQuote();
+    public QuoteGeneratorTelegramBot sendScheduledQuote(String status) throws TelegramApiException {
+        String message;
+        if (status.equals("live")) {
+            message = quoteGenerator.getQuotes().get(1);
+        } else {
+            message = quoteGenerator.getQuotes().get(2);
+        }
         long chatId = telegramBot.getChatId();
-        telegramBot.execute(new SendMessage(String.valueOf(chatId), randomQuote));
+        telegramBot.execute(new SendMessage(String.valueOf(chatId), message));
         return null;
     }
 }

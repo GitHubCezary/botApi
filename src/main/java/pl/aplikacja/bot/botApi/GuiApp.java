@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.messages.MessageInput;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinRequest;
 import com.vaadin.flow.server.VaadinServletRequest;
@@ -17,7 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 
 @Route("testApi")
@@ -25,17 +25,18 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class GuiApp extends VerticalLayout {
 
     private static final String LOGOUT_SUCCESS_URL = "/login";
+    private static final String url = "https://www.twitch.tv/";
     private static String streamerName;
-    private static String url = "https://www.twitch.tv/";
+
 
     @Autowired
-    public GuiApp(QuoteGeneratorTelegramBot telegramBot) {
+    public GuiApp() {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
 
+
         String givenName = principal.getAttribute("name");
-//        String familyName = principal.getAttribute("family_name");
         String email = principal.getAttribute("email");
 
         H2 header = new H2("Hello " + givenName);
@@ -55,20 +56,29 @@ public class GuiApp extends VerticalLayout {
                         3000, Notification.Position.MIDDLE);
             } else {
                 if (SeleniumConfig.checkStreamerPage(getStreamerLink()).equals("correct")) {
-                    Notification.show("Odnaleziono Streamera TwitchTV: " + submitEvent.getValue() + " jest: " + SeleniumConfig.printStatus(getStreamerLink()),
+
+                    Notification.show("Odnaleziono Streamera TwitchTV: "
+                                    + submitEvent.getValue() + " jest: "
+                                    + SeleniumConfig.printStatus(getStreamerLink()),
                             3000, Notification.Position.MIDDLE);
                 } else {
                     Notification.show("Nie znaleziono Streamera TwitchTV: " + submitEvent.getValue(),
                             3000, Notification.Position.MIDDLE);
                 }
+                SelleniumDriver.closeWebDriver();
             }
         });
-        Button buttonSendMessageTelegram = new Button("Wyślij Wiadomość na telegramie", buttonClickEvent -> {
-            try {
-                telegramBot.sendScheduledQuote();
-            } catch (TelegramApiException e) {
-                throw new RuntimeException(e);
-            }
+        H3 botTelegramHeader = new H3("Ustaw bota aby sprawdzić kiedy twój streamer bedzie online");
+        IntegerField integerTimeBotTelegram = new IntegerField();
+        integerTimeBotTelegram.setLabel("Czas działania bota");
+        integerTimeBotTelegram.setHelperText("max 60 minut");
+        integerTimeBotTelegram.setMin(0);
+        integerTimeBotTelegram.setMax(60);
+        integerTimeBotTelegram.setStepButtonsVisible(true);
+        Button buttonSendMessageTelegram = new Button("Uruchom bota", buttonClickEvent -> {
+
+            ScheduledTaskMenager scheduledTaskMenager = new ScheduledTaskMenager();
+            scheduledTaskMenager.startScheduledTask(integerTimeBotTelegram.getValue());
 
         });
         Button logoutButton = new Button("Logout", click -> {
@@ -84,12 +94,11 @@ public class GuiApp extends VerticalLayout {
 
 
         setAlignItems(Alignment.CENTER);
-        add(header, buttonSendMessageTelegram, logoutButton, streamerNameInput, input, headerBottom);
+        add(header, streamerNameInput, input, botTelegramHeader, integerTimeBotTelegram, buttonSendMessageTelegram, headerBottom, logoutButton);
     }
 
     public static String getStreamerLink() {
-        String streamerUrl = url + streamerName;
-        return streamerUrl;
+        return url + streamerName;
     }
 }
 

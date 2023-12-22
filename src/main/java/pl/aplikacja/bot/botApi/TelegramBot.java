@@ -51,7 +51,6 @@ public class TelegramBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-//        String username ="WebScrapingApi_bot";
         return username;
     }
 }

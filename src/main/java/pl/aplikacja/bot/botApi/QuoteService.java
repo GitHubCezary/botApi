@@ -13,16 +13,11 @@ public class QuoteService {
     private static final List<String> quotes = new ArrayList<>();
 
     static {
-        quotes.add("Wiadomość 1");
-        quotes.add("Wiadomość 2");
-        quotes.add("Wiadomość 3");
-        quotes.add("Wiadomość 4");
-        quotes.add("Wiadomość 5");
-
+        quotes.add("STREAM ONLINE");
+        quotes.add("W CZASIE DZIAŁANIA BOTA STREAM BYŁ OFFLINE");
     }
 
-    public String getRandomQuote() {
-        Random random = new Random();
-        return quotes.get(random.nextInt(quotes.size()));
+    public List<String> getQuotes() {
+        return quotes;
     }
 }

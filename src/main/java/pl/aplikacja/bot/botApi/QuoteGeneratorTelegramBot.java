@@ -23,9 +23,9 @@ public class QuoteGeneratorTelegramBot {
     public QuoteGeneratorTelegramBot sendScheduledQuote(String status) throws TelegramApiException {
         String message;
         if (status.equals("live")) {
-            message = quoteGenerator.getQuotes().get(1);
+            message = quoteGenerator.getQuotes().get(0);
         } else {
-            message = quoteGenerator.getQuotes().get(2);
+            message = quoteGenerator.getQuotes().get(1);
         }
         long chatId = telegramBot.getChatId();
         telegramBot.execute(new SendMessage(String.valueOf(chatId), message));

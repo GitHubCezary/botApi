@@ -1,4 +1,4 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.security;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Configuration;

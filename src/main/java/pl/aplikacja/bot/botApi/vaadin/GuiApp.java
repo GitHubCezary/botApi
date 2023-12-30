@@ -1,4 +1,4 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.vaadin;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -18,6 +18,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import pl.aplikacja.bot.botApi.scheduled.ScheduledTaskManager;
+import pl.aplikacja.bot.botApi.sellenium.SeleniumConfig;
+import pl.aplikacja.bot.botApi.sellenium.SelleniumDriver;
 
 
 @Route("testApi")
@@ -27,10 +30,13 @@ public class GuiApp extends VerticalLayout {
     private static final String LOGOUT_SUCCESS_URL = "/login";
     private static final String url = "https://www.twitch.tv/";
     private static String streamerName;
+    private final ScheduledTaskManager scheduledTaskManager;
 
 
     @Autowired
-    public GuiApp() {
+    public GuiApp(ScheduledTaskManager scheduledTaskManager) {
+        this.scheduledTaskManager = scheduledTaskManager;
+
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         OAuth2AuthenticatedPrincipal principal = (OAuth2AuthenticatedPrincipal) authentication.getPrincipal();
@@ -77,8 +83,7 @@ public class GuiApp extends VerticalLayout {
         integerTimeBotTelegram.setStepButtonsVisible(true);
         Button buttonSendMessageTelegram = new Button("Uruchom bota", buttonClickEvent -> {
 
-            ScheduledTaskMenager scheduledTaskMenager = new ScheduledTaskMenager();
-            scheduledTaskMenager.startScheduledTask(integerTimeBotTelegram.getValue());
+            scheduledTaskManager.startScheduledTask(integerTimeBotTelegram.getValue());
 
         });
         Button logoutButton = new Button("Logout", click -> {

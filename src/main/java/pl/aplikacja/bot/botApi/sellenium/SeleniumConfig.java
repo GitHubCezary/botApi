@@ -1,10 +1,10 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.sellenium;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import static pl.aplikacja.bot.botApi.SelleniumDriver.initializeWebDriver;
+import static pl.aplikacja.bot.botApi.sellenium.SelleniumDriver.initializeWebDriver;
 
 
 public class SeleniumConfig {

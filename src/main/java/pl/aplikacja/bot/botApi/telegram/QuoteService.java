@@ -1,11 +1,10 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.telegram;
 
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class QuoteService {

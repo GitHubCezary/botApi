@@ -1,4 +1,4 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.telegram;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class QuoteGeneratorTelegramBot {
         this.quoteGenerator = quoteGenerator;
     }
 
-    public QuoteGeneratorTelegramBot sendScheduledQuote(String status) throws TelegramApiException {
+    public void sendScheduledQuote(String status) throws TelegramApiException {
         String message;
         if (status.equals("live")) {
             message = quoteGenerator.getQuotes().get(0);
@@ -29,7 +29,7 @@ public class QuoteGeneratorTelegramBot {
         }
         long chatId = telegramBot.getChatId();
         telegramBot.execute(new SendMessage(String.valueOf(chatId), message));
-        return null;
+
     }
 }
 

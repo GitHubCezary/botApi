@@ -1,4 +1,4 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.telegram;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,17 +11,14 @@ import java.util.List;
 public class TelegramBot extends TelegramLongPollingBot {
 
 
-//    @Value("${telegram.bot.token}")
-    private String token = "6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY";
+    @Value("${telegram.bot.token}")
+    private final String token = "6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY";
 
-    //    @Value("${telegram.bot.chatId}")
-    private Long chatId = Long.parseLong("-4094230795");
+    @Value("${telegram.bot.chatId}")
+    private final Long chatId = Long.parseLong("-4094230795");
 
     @Value("${telegram.bot.username}")
     private String username;
-
-    public TelegramBot() {
-    }
 
 
     public Long getChatId() {

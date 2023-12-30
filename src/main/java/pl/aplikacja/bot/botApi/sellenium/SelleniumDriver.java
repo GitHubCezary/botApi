@@ -1,4 +1,4 @@
-package pl.aplikacja.bot.botApi;
+package pl.aplikacja.bot.botApi.sellenium;
 
 
 import org.openqa.selenium.WebDriver;

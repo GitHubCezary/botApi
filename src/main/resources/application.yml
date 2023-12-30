@@ -20,5 +20,5 @@ telegram:
     username: WebScrapingApi_bot
 vaadin:
   servlet:
-    blacklisted-classes: pl.aplikacja.bot.botApi.SeleniumConfig, pl.aplikacja.bot.botApi.TelegramBot
+    blacklisted-classes: pl.aplikacja.bot.botApi.sellenium.SeleniumConfig, pl.aplikacja.bot.botApi.telegram.TelegramBot
 

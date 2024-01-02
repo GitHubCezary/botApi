@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import pl.aplikacja.bot.botApi.sellenium.SelleniumDriver;
 import pl.aplikacja.bot.botApi.telegram.QuoteGeneratorTelegramBot;
@@ -14,7 +14,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-@Component
+@Controller
 public class ScheduledTaskManager {
 
     private final QuoteGeneratorTelegramBot quoteGeneratorTelegramBot;

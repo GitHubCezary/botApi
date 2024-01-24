@@ -12,10 +12,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 
     @Value("${telegram.bot.token}")
-    private final String token = "6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY";
+    private final String token;
 
     @Value("${telegram.bot.chatId}")
-    private final Long chatId = Long.parseLong("-4094230795");
+    private final Long chatId = Long.parseLong("YOUR TELEGRAM GROUP ID");
 
     @Value("${telegram.bot.username}")
     private String username;

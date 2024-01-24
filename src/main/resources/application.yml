@@ -4,21 +4,19 @@ spring:
       client:
         registration:
           github:
-            clientId: 76aea9fb3a42c886d491
-            clientSecret: 847f8b572c054f089fcdaa2d017cf6f62b6ef2c3
+            clientId: 
+            clientSecret: 
           google:
-            client-id: 544172631662-3sj598scne4q72lr9ou99b2ubf7ire7r.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 
+            client-secret:
 
-#logging:
-#  level:
-#    org.springframework.security: DEBUG
+
 telegram:
    bot:
-    token: 6709114613:AAGo7ZeMIB_RkHuYe-Xi0aTlVoIC8tV4mkY
-    chatId: -4094230795
-    username: WebScrapingApi_bot
+    token: 
+    chatId: 
+    username: 
 vaadin:
   servlet:
-    blacklisted-classes: pl.aplikacja.bot.botApi.sellenium.SeleniumConfig, pl.aplikacja.bot.botApi.telegram.TelegramBot
+    blacklisted-classes: 
 

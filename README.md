@@ -24,3 +24,22 @@ Następnie użytkownik ustawia czas działania bota - czas przeszukiwania sieci.
 Jeżeli podczas działania bota wszukiwany Stremer bedzie online Aplikacja wyśle powiadomienie do Grupy Telegram przez BotaTelegram. Api wyśle powiadomienie również gdy Bot zakończył swoje działąnia a Streamer pozostawał offline.
 API z pobranych informacji od dostawcy usług wyświetla nazwę użytkownika.
 Na dole widoku dostępna jest opcja Logoutu.
+
+### Bezpieczeństwo 
+
+Aplikacja nie przechowuje haseł i danych wrażliwych uzytkowników. Autentykacja odbywa sie za pomocą OAuth2 przez zewnętrzynych dostawców usług.
+Aplikacja korzysta z publicznych danych użytkowników takich jak: Nazwa, adres email czy zdjęcie profilowe
+
+### Sposób Uruchomienia Aplikacji
+
+ 1 Należy sklonować to repozytorium 
+ git clone https://github.com/GitHubCezary/botApi.git
+ 2 Zainstalować webdriver do frameworka Sellenium można skorzystać z [web driver](https://www.selenium.dev/documentation/webdriver/)
+ i podać scieżkę dostępu w klasie konfiguracyjnej.
+ 3 Utworzyć api u zewnętrznego dostawcy usług logowania Oauth2. [google](https://developers.google.com/identity/protocols/oauth2?hl=pl)
+ [github](https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)
+ 4 Uzyskać klienta ID oraz tajny klucz aplikacji OAuth2 i wprowadzić dane do pliku application.yml
+ 5 Utworzyć własnego bota Telegram przez Aplikcaje Telegram i utworzyć grupe z czatem Telegram.
+
+ 
+ 

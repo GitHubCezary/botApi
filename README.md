@@ -11,4 +11,7 @@ Aplikacja Bot API standardowo działa na serwerze Tomcat na porcie 8080. Po uruc
 
 Na stronie głównej znajdują sie opcje logowania z użyciem OAuth2. Użytkownik loguje się przez zewnętrzynych dostawców usług GOOGLE lub GITHUB. dostawcy udostępnią aplikacji nazwę użytkownika, adres e-mail, ustawienia języka i zdjęcie profilowe.
 Po poprawnym zalogowaniu użytkownik przechodzi do widoku aplikacji
-![Strona po zalogowaniu]
+### Strona po zalogowaniu
+![Strona po zalogowaniu](https://github.com/GitHubCezary/botApi/blob/91d578fd9050bec449f439e74ebcdb7198475758/Zrzut%20ekranu%202024-01-25%20105142.png)
+Po wprowadzeniu nazwy Streamera i kliknięcia przycisku Send aplikacja sprawdzi jednorazowo czy stream jest online, niezależnie od wyniku api powiadomi użytkownika o wyniku wyszukiwania.
+

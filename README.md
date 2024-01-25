@@ -21,4 +21,6 @@ przykład:
 
 Aby skorzystać z bota użytkownik musi sprawdzić wcześniej jednorazowo. Po dokonaniu sprawdzenia nazwa szukanego Stremera jest juz w Pamięci Api i nie trzeba wprowadzać jej ponownie.
 Następnie użytkownik ustawia czas działania bota - czas przeszukiwania sieci. (Standardowo maksymalny czas działania bota jest ograniczony do 60 minut - można to zmienić w kodzie aplikacji)
-
+Jeżeli podczas działania bota wszukiwany Stremer bedzie online Aplikacja wyśle powiadomienie do Grupy Telegram przez BotaTelegram. Api wyśle powiadomienie również gdy Bot zakończył swoje działąnia a Streamer pozostawał offline.
+API z pobranych informacji od dostawcy usług wyświetla nazwę użytkownika.
+Na dole widoku dostępna jest opcja Logoutu.

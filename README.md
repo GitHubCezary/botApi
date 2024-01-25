@@ -7,7 +7,7 @@ Aplikacja Bot API standardowo działa na serwerze Tomcat na porcie 8080. Po uruc
 
 ### Strona Główna
 
-![Strona Główna](./screenshots/strona_glowna.png)
+![Strona Główna](Zrzut ekranu 2024-01-24 163227.png)
 
 Na stronie głównej znajdziesz podstawowe informacje dotyczące śledzonego streamera oraz interaktywny panel umożliwiający dostęp do różnych funkcji aplikacji.
 

@@ -14,4 +14,7 @@ Po poprawnym zalogowaniu użytkownik przechodzi do widoku aplikacji
 ### Strona po zalogowaniu
 ![Strona po zalogowaniu](https://github.com/GitHubCezary/botApi/blob/91d578fd9050bec449f439e74ebcdb7198475758/Zrzut%20ekranu%202024-01-25%20105142.png)
 Po wprowadzeniu nazwy Streamera i kliknięcia przycisku Send aplikacja sprawdzi jednorazowo czy stream jest online, niezależnie od wyniku api powiadomi użytkownika o wyniku wyszukiwania.
+przykład: ![Strona po zalogowaniu](https://github.com/GitHubCezary/botApi/blob/a7eae0e3ca3c31ac5eaaa35683443b8fa91eb003/Zrzut%20ekranu%202024-01-25%20110034.png)
+Aby skorzystać z bota użytkownik musi sprawdzić wcześniej jednorazowo. Po dokonaniu sprawdzenia nazwa szukanego Stremera jest juz w Pamięci Api i nie trzeba wprowadzać jej ponownie.
+Następnie użytkownik ustawia czas działania bota - czas przeszukiwania sieci. (Standardowo maksymalny czas działania bota jest ograniczony do 60 minut - można to zmienić w kodzie aplikacji)
 
